@@ -33,7 +33,8 @@ db.exec(`
 `);
 
 // Indexes for columns used in filters, grouping, and ordering
-// These are the columns that made dashboard queries drop to <300ms on 10k rows
+// At 10k rows these make no measurable difference (see BENCHMARK.md); they are
+// kept because they become useful as the table grows
 db.exec(`
   CREATE INDEX IF NOT EXISTS idx_stage          ON accounts(stage);
   CREATE INDEX IF NOT EXISTS idx_last_contacted ON accounts(last_contacted);
