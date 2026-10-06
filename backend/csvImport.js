@@ -56,7 +56,11 @@ function normalizeRow(raw) {
  * and bulk-inserts into the database.
  * Returns { imported, skipped }.
  */
-function importCsv(filePath) {
+function importCsv(filePath, options = {}) {
+  // Uploads land in a temp folder and are deleted after import. Seeding scripts
+  // pass keepSourceFile so a checked-in sample CSV is not removed from the repo.
+  const keepSourceFile = options.keepSourceFile === true;
+
   const fileContent = fs.readFileSync(filePath, 'utf-8');
 
   const { data, errors } = Papa.parse(fileContent, {
@@ -87,7 +91,9 @@ function importCsv(filePath) {
   bulkInsert(rows);
 
   // Clean up the uploaded temp file
-  try { fs.unlinkSync(filePath); } catch (_) {}
+  if (!keepSourceFile) {
+    try { fs.unlinkSync(filePath); } catch (_) {}
+  }
 
   return { imported: rows.length, skipped };
 }

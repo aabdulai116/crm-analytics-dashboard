@@ -1,0 +1,382 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f4f6fa;
+  color: #16202e;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── Header ──────────────────────────────────────── */
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.app-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f3460;
+}
+
+.app-subtitle {
+  font-size: 0.92rem;
+  color: #5a6474;
+  margin-top: 6px;
+  max-width: 560px;
+  line-height: 1.55;
+}
+
+/* ── Uploader ────────────────────────────────────── */
+
+.uploader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-size: 0.89rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: #0f3460;
+  color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #16213e;
+}
+
+.btn-ghost {
+  background: #fff;
+  color: #5a6474;
+  border-color: #d7dde8;
+}
+
+.btn-ghost:hover:not(:disabled) {
+  background: #eef1f7;
+}
+
+.status {
+  font-size: 0.83rem;
+  font-weight: 500;
+}
+
+.status-ok {
+  color: #1e8449;
+}
+
+.status-error {
+  color: #c0392b;
+}
+
+/* ── Error banner ────────────────────────────────── */
+
+.error-banner {
+  background: #fff4f4;
+  border: 1px solid #f3c2c2;
+  color: #a93226;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/* ── Metric cards ────────────────────────────────── */
+
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.metric-card {
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  border-radius: 12px;
+  padding: 16px 18px;
+}
+
+.metric-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8792a4;
+}
+
+.metric-value {
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #0f3460;
+  margin-top: 6px;
+  line-height: 1.15;
+}
+
+.metric-note {
+  font-size: 0.76rem;
+  color: #8792a4;
+  margin-top: 4px;
+}
+
+/* ── Panels ──────────────────────────────────────── */
+
+.panel {
+  background: #fff;
+  border: 1px solid #e3e8f0;
+  border-radius: 12px;
+  padding: 18px 20px 20px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.panel-title {
+  font-size: 1.02rem;
+  font-weight: 650;
+  color: #16202e;
+}
+
+.row-count {
+  font-size: 0.82rem;
+  color: #8792a4;
+}
+
+.empty-note {
+  font-size: 0.87rem;
+  color: #8792a4;
+  padding: 14px 0;
+}
+
+.truncation-note {
+  font-size: 0.78rem;
+  color: #8792a4;
+  margin-top: 10px;
+}
+
+.split-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+/* ── Filters ─────────────────────────────────────── */
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 220px;
+  padding: 9px 13px;
+  border: 1px solid #d7dde8;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.search-input:focus {
+  border-color: #0f3460;
+}
+
+.stage-select,
+.days-select {
+  padding: 9px 12px;
+  border: 1px solid #d7dde8;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+/* ── Table ───────────────────────────────────────── */
+
+.table-scroll {
+  overflow-x: auto;
+  max-height: 460px;
+  overflow-y: auto;
+}
+
+.accounts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+}
+
+.accounts-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f7f9fc;
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 0.75rem;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8792a4;
+  border-bottom: 1px solid #e3e8f0;
+  white-space: nowrap;
+}
+
+.accounts-table th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.accounts-table th.sortable:hover {
+  color: #0f3460;
+}
+
+.accounts-table tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eef1f7;
+  vertical-align: middle;
+}
+
+.accounts-table tbody tr:hover {
+  background: #fafbfe;
+}
+
+.cell-company {
+  font-weight: 560;
+  color: #16202e;
+}
+
+.cell-revenue {
+  font-variant-numeric: tabular-nums;
+}
+
+.cell-date,
+.cell-contact {
+  color: #5a6474;
+  white-space: nowrap;
+}
+
+.empty-cell {
+  text-align: center;
+  color: #8792a4;
+  padding: 28px 0;
+}
+
+/* ── Stage badges ────────────────────────────────── */
+
+.stage-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.stage-lead {
+  background: #eef1f7;
+  color: #5a6474;
+}
+
+.stage-qualified {
+  background: #e4effb;
+  color: #1f5c99;
+}
+
+.stage-proposal {
+  background: #fdf2dc;
+  color: #96640c;
+}
+
+.stage-negotiation {
+  background: #fde8e0;
+  color: #a8531f;
+}
+
+.stage-won {
+  background: #e3f6ea;
+  color: #1e8449;
+}
+
+.stage-lost {
+  background: #fbe6e6;
+  color: #a93226;
+}
+
+/* ── Overdue list ────────────────────────────────── */
+
+.overdue-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.overdue-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #eef1f7;
+  font-size: 0.87rem;
+}
+
+.overdue-row:last-child {
+  border-bottom: none;
+}
+
+.overdue-company {
+  font-weight: 560;
+}
+
+.overdue-date {
+  color: #8792a4;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+/* ── Chart ───────────────────────────────────────── */
+
+.chart-wrapper {
+  width: 100%;
+}

@@ -1,20 +1,17 @@
 {
-  "name": "crm-dashboard-backend",
+  "name": "crm-analytics-dashboard",
   "version": "1.0.0",
-  "description": "Express/SQLite backend for the CRM analytics dashboard",
-  "main": "server.js",
+  "private": true,
+  "description": "Full stack CRM analytics dashboard built with React, Node.js, Express and SQLite",
   "scripts": {
-    "start": "node server.js",
-    "dev":   "nodemon server.js"
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "start:backend": "npm start --prefix backend",
+    "start:frontend": "npm run dev --prefix frontend",
+    "generate:sample": "node scripts/generateSampleCsv.js 50 sample-data/sample_crm.csv",
+    "generate:10k": "node scripts/generateSampleCsv.js 10000 sample-data/sample_crm_10k.csv",
+    "seed:10k": "node scripts/seed.js sample-data/sample_crm_10k.csv",
+    "benchmark": "node scripts/benchmark.js",
+    "benchmark:no-index": "node scripts/benchmark.js --no-index"
   },
-  "dependencies": {
-    "better-sqlite3": "^9.4.3",
-    "cors":           "^2.8.5",
-    "express":        "^4.19.2",
-    "multer":         "^1.4.5-lts.1",
-    "papaparse":      "^5.4.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
-  }
+  "license": "MIT"
 }

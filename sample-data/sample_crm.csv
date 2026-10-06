@@ -1,0 +1,51 @@
+company,contact_name,email,stage,revenue,last_contacted,created_at
+Pinnacle Industries,Elena Haddad,elena.haddad@pinnacle.example.com,Proposal,91200,2026-06-20,2025-08-16
+Copperfield Supply Co,Devon Quinn,devon.quinn@copperfield.example.com,Proposal,59700,2026-08-26,2025-06-23
+Fairview Partners,Franklin Haddad,franklin.haddad@fairview.example.com,Lost,39300,2026-08-21,2026-01-13
+Blue Harbor Works,Rosa Delgado,rosa.delgado@blueharbor.example.com,Lead,29500,2026-09-11,2025-04-30
+Granite Holdings,Mateo Prasad,mateo.prasad@granite.example.com,Lost,199700,2026-05-29,2025-08-13
+Kingsley Logistics,Grace Stern,grace.stern@kingsley.example.com,Qualified,109400,2026-08-10,2026-03-12
+Ironside Industries,Grace Nguyen,grace.nguyen@ironside.example.com,Lead,192200,2026-07-04,2025-07-15
+Granite Logistics,Nadia Boateng,nadia.boateng@granite.example.com,Won,166000,2026-06-30,2025-10-25
+Norbury Supply Co,Franklin Stern,franklin.stern@norbury.example.com,Proposal,93800,2026-10-01,2025-12-03
+Maplewood Consulting,Franklin Haddad,franklin.haddad@maplewood.example.com,Lost,149600,2026-07-12,2025-11-12
+Orchard Dynamics,Tessa Rivera,tessa.rivera@orchard.example.com,Proposal,198700,2026-09-28,2026-01-22
+Brightline Dynamics,Hassan Mensah,hassan.mensah@brightline.example.com,Qualified,113800,2026-07-15,2025-11-04
+Tidewater Works,Omar Okafor,omar.okafor@tidewater.example.com,Won,218900,2026-07-24,2025-12-16
+Lakeshore Technologies,Dana Whitfield,dana.whitfield@lakeshore.example.com,Won,88700,2026-09-18,2025-05-31
+Hollis Solutions,Elena Nguyen,elena.nguyen@hollis.example.com,Lost,12700,2026-09-06,2025-09-17
+Copperfield Systems,Clara Abara,clara.abara@copperfield.example.com,Proposal,164000,2026-08-27,2026-01-11
+Juniper Works,Clara Reyes,clara.reyes@juniper.example.com,Qualified,34800,2026-05-27,2025-06-09
+Lakeshore Supply Co,Hassan Haddad,hassan.haddad@lakeshore.example.com,Qualified,61700,2026-09-07,2025-04-25
+Blue Harbor Consulting,Kofi Abara,kofi.abara@blueharbor.example.com,Won,64500,,2025-09-30
+Granite Group,Tessa Abara,tessa.abara@granite.example.com,Negotiation,106900,2026-08-27,2026-01-24
+Redwood Solutions,Clara Silva,clara.silva@redwood.example.com,Won,146600,2026-04-22,2026-01-12
+Vertex Analytics,Tomas Rivera,tomas.rivera@vertex.example.com,Negotiation,217900,2026-09-04,2025-11-16
+Stonebridge Works,Ingrid Carter,ingrid.carter@stonebridge.example.com,Lost,10100,2026-04-15,2025-09-07
+Maplewood Supply Co,Kofi Novak,kofi.novak@maplewood.example.com,Lead,213000,,2025-10-17
+Brightline Logistics,Aisha Quinn,aisha.quinn@brightline.example.com,Negotiation,130000,2026-08-01,2026-03-07
+Meridian Holdings,Grace Costa,grace.costa@meridian.example.com,Lead,40400,2026-09-18,2025-06-14
+Maplewood Holdings,Grace Moreau,grace.moreau@maplewood.example.com,Negotiation,79900,2026-08-28,2025-12-27
+Fairview Logistics,Priya Reyes,priya.reyes@fairview.example.com,Negotiation,137900,2026-08-12,2026-01-04
+Eastgate Partners,Mateo Carter,mateo.carter@eastgate.example.com,Negotiation,193200,2026-05-22,2025-09-27
+Orchard Partners,Nadia Haddad,nadia.haddad@orchard.example.com,Qualified,135500,2026-07-07,2026-03-31
+Norbury Partners,Priya Whitfield,priya.whitfield@norbury.example.com,Won,57100,2026-09-30,2025-11-20
+Northwind Technologies,Ingrid Tanaka,ingrid.tanaka@northwind.example.com,Qualified,65400,2026-06-01,2025-05-24
+Maplewood Logistics,Nadia Stern,nadia.stern@maplewood.example.com,Lost,60700,2026-08-10,2026-03-09
+Juniper Labs,Mateo Costa,mateo.costa@juniper.example.com,Lead,230900,2026-07-29,2025-11-30
+Copperfield Partners,Aisha Novak,aisha.novak@copperfield.example.com,Proposal,234000,2026-09-10,2025-07-06
+Tidewater Dynamics,Ingrid Moreau,ingrid.moreau@tidewater.example.com,Negotiation,218600,2026-04-11,2025-06-30
+Brightline Technologies,Kofi Moreau,kofi.moreau@brightline.example.com,Lost,58400,2026-08-22,2026-01-02
+Fairview Holdings,Hassan Prasad,hassan.prasad@fairview.example.com,Proposal,187300,2026-05-18,2025-05-07
+Tidewater Solutions,Tomas Costa,tomas.costa@tidewater.example.com,Lost,91600,2026-05-31,2025-11-08
+Brightline Networks,Elena Okafor,elena.okafor@brightline.example.com,Lead,13800,2026-10-01,2025-06-27
+Granite Works,Lydia Nguyen,lydia.nguyen@granite.example.com,Proposal,241900,2026-09-06,2025-07-02
+Norbury Group,Grace Reyes,grace.reyes@norbury.example.com,Negotiation,155600,2026-09-08,2025-08-20
+Pinnacle Analytics,Kofi Tanaka,kofi.tanaka@pinnacle.example.com,Negotiation,155900,2026-09-16,2026-03-24
+Blue Harbor Holdings,Rosa Abara,rosa.abara@blueharbor.example.com,Won,46300,2026-07-07,2025-12-12
+Eastgate Works,Kofi Boateng,kofi.boateng@eastgate.example.com,Proposal,45400,,2025-07-14
+Ironside Analytics,Nadia Prasad,nadia.prasad@ironside.example.com,Negotiation,32300,2026-05-20,2026-03-11
+Stonebridge Partners,Simon Boateng,simon.boateng@stonebridge.example.com,Lost,122300,2026-06-05,2025-08-13
+Acme Solutions,Dana Costa,dana.costa@acme.example.com,Qualified,144300,,2025-06-28
+Meridian Solutions,Clara Tanaka,clara.tanaka@meridian.example.com,Won,167500,2026-06-12,2025-04-30
+Juniper Technologies,Tessa Delgado,tessa.delgado@juniper.example.com,Qualified,212800,2026-09-20,2026-02-14

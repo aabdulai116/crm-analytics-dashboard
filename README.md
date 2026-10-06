@@ -1,6 +1,8 @@
 # CRM Analytics Dashboard
 
-A full-stack CRM analytics tool built with React.js, Node.js, and SQLite. Import CSV sales data, query it through a clean dashboard, and surface key pipeline metrics — including overdue accounts, deal-stage breakdowns, and revenue summaries.
+A full stack CRM analytics tool built with React, Node.js, Express and SQLite.
+Import a CSV of sales records, then explore pipeline health, revenue by stage,
+and accounts that have gone quiet.
 
 ![Node](https://img.shields.io/badge/Node.js-18+-green)
 ![React](https://img.shields.io/badge/React-18-61dafb)
@@ -11,130 +13,150 @@ A full-stack CRM analytics tool built with React.js, Node.js, and SQLite. Import
 
 ## Features
 
-- **CSV import** — drag-and-drop or file-select to load your sales data
-- **Pipeline overview** — cards showing total leads, open deals, won deals, total revenue
-- **Accounts table** — filterable, sortable view of all records with deal stage badges
-- **Overdue follow-ups** — query for accounts not contacted in N days
-- **Deal-stage breakdown** — bar chart showing count and revenue by stage
-- **REST API** — clean Node/Express backend with parameterized SQL queries
-- **Fast queries** — indexed foreign key columns, aggregation caching, sub-300ms on 10k rows
+- **CSV import** through the browser, parsed and bulk inserted in a single transaction
+- **KPI tiles** for total accounts, open deals, closed won revenue, and overdue follow ups
+- **Deals by stage** bar chart built from a SQL aggregation
+- **Accounts table** with server side search, stage filtering and sortable columns
+- **Overdue follow ups** panel with a configurable day window
+- **REST API** with parameterized SQL throughout, so no user input is concatenated into a query
+- **Reproducible benchmark** script with published results, see [BENCHMARK.md](BENCHMARK.md)
 
 ---
 
-## Tech Stack
+## Tech stack
 
-| Layer     | Technology                    |
-|-----------|-------------------------------|
-| Frontend  | React 18, Vite, Recharts      |
-| Backend   | Node.js 18, Express           |
-| Database  | SQLite3 (via better-sqlite3)  |
-| CSV Parse | PapaParse                     |
-| Styling   | Plain CSS                     |
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, Vite, Recharts |
+| Backend | Node.js, Express |
+| Database | SQLite via better-sqlite3 (WAL mode) |
+| CSV parsing | PapaParse |
+| Upload handling | Multer |
 
 ---
 
-## Project Structure
+## Project structure
 
 ```
 crm-analytics-dashboard/
 ├── backend/
-│   ├── server.js        # Express app, REST API routes
-│   ├── db.js            # SQLite setup, schema creation, indexing
-│   ├── queries.js       # All parameterized SQL query functions
-│   ├── csvImport.js     # CSV parsing and DB insertion logic
+│   ├── server.js            # Express app and REST routes
+│   ├── db.js                # SQLite setup, schema, indexes
+│   ├── queries.js           # Prepared statements and query functions
+│   ├── csvImport.js         # CSV parsing and bulk insert
 │   └── package.json
 ├── frontend/
-│   ├── public/
-│   │   └── index.html
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   ├── main.jsx
-│   │   ├── components/
-│   │   │   ├── MetricCard.jsx
-│   │   │   ├── AccountsTable.jsx
-│   │   │   ├── StageChart.jsx
-│   │   │   └── CsvUploader.jsx
-│   │   └── hooks/
-│   │       └── useApi.js
+│   ├── index.html
+│   ├── vite.config.js       # Dev server proxies /api to :3001
 │   ├── package.json
-│   └── vite.config.js
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx          # Data fetching and layout
+│       ├── api.js           # Typed wrapper around the REST API
+│       ├── styles.css
+│       └── components/
+│           ├── MetricCard.jsx
+│           ├── StageChart.jsx
+│           ├── AccountsTable.jsx
+│           ├── OverduePanel.jsx
+│           └── CsvUploader.jsx
+├── scripts/
+│   ├── generateSampleCsv.js # Deterministic synthetic data generator
+│   ├── seed.js              # Loads a CSV straight into the database
+│   └── benchmark.js         # Query latency measurement
 ├── sample-data/
-│   └── sample_crm.csv   # 50 sample records to test with
+│   └── sample_crm.csv       # 50 rows to try the app immediately
+├── BENCHMARK.md
 └── README.md
 ```
 
 ---
 
-## Getting Started
+## Getting started
 
-### Prerequisites
-- Node.js 18+
-
-### 1. Clone the repo
+Requires Node.js 18 or newer.
 
 ```bash
 git clone https://github.com/aabdulai116/crm-analytics-dashboard.git
 cd crm-analytics-dashboard
+npm run install:all
 ```
 
-### 2. Start the backend
+Start the backend on port 3001:
 
 ```bash
-cd backend
-npm install
-npm start
-# Server runs on http://localhost:3001
+npm run start:backend
 ```
 
-### 3. Start the frontend
+In a second terminal, start the frontend on port 5173:
 
 ```bash
-cd ../frontend
-npm install
-npm run dev
-# App runs on http://localhost:5173
+npm run start:frontend
 ```
 
-### 4. Load sample data
-
-Open the app and click **"Import CSV"**. Use the file at `sample-data/sample_crm.csv` to populate the dashboard immediately.
+Open http://localhost:5173, click **Import CSV**, and choose
+`sample-data/sample_crm.csv`.
 
 ---
 
-## API Endpoints
+## API
 
-| Method | Endpoint                    | Description                              |
-|--------|-----------------------------|------------------------------------------|
-| POST   | `/api/import`               | Upload and parse a CSV file              |
-| GET    | `/api/accounts`             | All accounts with optional filters       |
-| GET    | `/api/accounts/overdue`     | Accounts not contacted in N days         |
-| GET    | `/api/metrics/summary`      | Total leads, deals, revenue counts       |
-| GET    | `/api/metrics/by-stage`     | Deal count and revenue grouped by stage  |
-| DELETE | `/api/data/reset`           | Clear all imported data                  |
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/health` | Health check |
+| `POST` | `/api/import` | Upload a CSV (multipart field `file`) |
+| `GET` | `/api/accounts` | Accounts, filterable and sortable |
+| `GET` | `/api/accounts/overdue` | Accounts not contacted in N days |
+| `GET` | `/api/metrics/summary` | Total accounts, open deals, won revenue, stage breakdown |
+| `GET` | `/api/metrics/by-stage` | Deal count and revenue grouped by stage |
+| `DELETE` | `/api/data/reset` | Clear all imported data |
 
-### Query Parameters for `GET /api/accounts`
+### Query parameters for `GET /api/accounts`
 
-| Param    | Type   | Example             | Description            |
-|----------|--------|---------------------|------------------------|
-| stage    | string | `?stage=Negotiation`| Filter by deal stage   |
-| search   | string | `?search=Acme`      | Search by company name |
-| sort     | string | `?sort=revenue`     | Sort column            |
-| order    | string | `?order=desc`       | Sort direction         |
+| Param | Example | Description |
+|---|---|---|
+| `stage` | `?stage=Negotiation` | Filter by pipeline stage |
+| `search` | `?search=Cedar` | Match company, contact name or email |
+| `sort` | `?sort=revenue` | Sort column, validated against an allowlist |
+| `order` | `?order=desc` | `asc` or `desc` |
+
+Sort and order are checked against an allowlist before being interpolated,
+since column names cannot be bound as SQL parameters. Every value filter uses
+bound parameters.
 
 ---
 
-## CSV Format
+## CSV format
 
-Your CSV must include these columns (header names are case-insensitive):
+Headers are matched case insensitively.
 
 ```
-id, company, contact_name, email, stage, revenue, last_contacted, created_at
+company,contact_name,email,stage,revenue,last_contacted,created_at
 ```
 
-**Supported stages:** `Lead`, `Qualified`, `Proposal`, `Negotiation`, `Won`, `Lost`
+- `company` is required; rows without one are skipped and counted
+- `stage` must be one of `Lead`, `Qualified`, `Proposal`, `Negotiation`, `Won`, `Lost`, and falls back to `Lead`
+- `revenue` is parsed as a number, defaulting to 0
+- `last_contacted` and `created_at` must be `YYYY-MM-DD`; invalid dates become null
 
-See `sample-data/sample_crm.csv` for a working example.
+---
+
+## Performance
+
+Full measured results, including the method and the commands to reproduce
+them, are in [BENCHMARK.md](BENCHMARK.md).
+
+Summary at 10,000 rows: every dashboard query completes in under 25 ms at p95,
+and the indexes defined in `db.js` make no measurable difference at this scale.
+They are retained because they are the correct structure as the table grows,
+not because they produced a speedup here. The benchmark exists so that claim
+can be checked rather than assumed.
+
+```bash
+npm run generate:10k
+npm run seed:10k
+npm run benchmark
+```
 
 ---
 
