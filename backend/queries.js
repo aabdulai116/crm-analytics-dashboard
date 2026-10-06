@@ -122,8 +122,7 @@ function getByStage() {
 /**
  * bulkInsert(rows)
  * Wraps multiple inserts in a single transaction for performance.
- * One transaction means one disk sync for the whole batch instead of one per row,
- * compared to individual inserts.
+ * One transaction means one disk sync for the whole batch instead of one per row.
  */
 const bulkInsert = db.transaction((rows) => {
   for (const row of rows) {
